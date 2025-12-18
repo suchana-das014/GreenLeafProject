@@ -14,8 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased min-h-screen flex items-center justify-center
-bg-gradient-to-br from-green-700 via-green-600 to-emerald-500">
+    <body class="font-sans antialiased min-h-screen flex items-center justify-center bg-white">
 
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div>

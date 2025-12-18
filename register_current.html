@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="35X63bAmT6vZqqp0CYzLgxYNjZ16JRpG5q5UQXBP">
+
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Scripts -->
+        <link rel="preload" as="style" href="http://127.0.0.1:8000/build/assets/app-a1UkEB58.css" /><link rel="modulepreload" as="script" href="http://127.0.0.1:8000/build/assets/app-CiZ6hk-B.js" /><link rel="stylesheet" href="http://127.0.0.1:8000/build/assets/app-a1UkEB58.css" /><script type="module" src="http://127.0.0.1:8000/build/assets/app-CiZ6hk-B.js"></script>    </head>
+    <body class="font-sans antialiased min-h-screen flex items-center justify-center
+bg-gradient-to-br from-green-700 via-green-600 to-emerald-500">
+
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+            <div>
+                <a href="/">
+                    <img src="http://127.0.0.1:8000/images/leaf.svg" alt="Logo" class="w-8 h-8 w-20 h-20 fill-current text-gray-500" />
+                </a>
+            </div>
+
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                <form method="POST" action="http://127.0.0.1:8000/register">
+        <input type="hidden" name="_token" value="35X63bAmT6vZqqp0CYzLgxYNjZ16JRpG5q5UQXBP" autocomplete="off">
+        <div class="mt-4">
+            <p class="block text-sm font-medium text-gray-700 mb-3">Register as</p>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Buyer -->
+                <div class="cursor-pointer" onclick="document.getElementById('buyer').checked = true; updateSelection()">
+                    <input type="radio" id="buyer" name="role" value="buyer" class="hidden" checked>
+                    <div class="border-2 border-gray-300 rounded-lg p-4 text-center transition-all hover:border-gray-400 buyer-box"
+                        id="buyer-box" style="border-color: #16a34a; background-color: #4ade80;">
+                        <h3 class="font-semibold">Buyer</h3>
+                        <p class="text-sm text-gray-500">Shop products</p>
+                    </div>
+                </div>
+
+                <!-- Seller -->
+                <div class="cursor-pointer" onclick="document.getElementById('seller').checked = true; updateSelection()">
+                    <input type="radio" id="seller" name="role" value="seller" class="hidden">
+                    <div class="border-2 border-gray-300 rounded-lg p-4 text-center transition-all hover:border-gray-400 seller-box"
+                        id="seller-box" style="border-color: #d1d5db; background-color: transparent;">
+                        <h3 class="font-semibold">Seller</h3>
+                        <p class="text-sm text-gray-500">Sell products</p>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+
+        <script>
+            function updateSelection() {
+                const buyerBox = document.getElementById('buyer-box');
+                const sellerBox = document.getElementById('seller-box');
+                const buyerInput = document.getElementById('buyer');
+                const sellerInput = document.getElementById('seller');
+
+                if (buyerInput.checked) {
+                    buyerBox.style.borderColor = '#16a34a';
+                    buyerBox.style.backgroundColor = '#4ade80';
+                    sellerBox.style.borderColor = '#d1d5db';
+                    sellerBox.style.backgroundColor = 'transparent';
+                } else {
+                    sellerBox.style.borderColor = '#16a34a';
+                    sellerBox.style.backgroundColor = '#4ade80';
+                    buyerBox.style.borderColor = '#d1d5db';
+                    buyerBox.style.backgroundColor = 'transparent';
+                }
+            }
+            
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                updateSelection();
+            });
+        </script>
+
+
+        <!-- Name -->
+        <div>
+            <label class="block font-medium text-sm text-gray-700" for="name">
+    Name
+</label>
+            <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="name" type="text" name="name" required="required" autofocus="autofocus" autocomplete="name">
+                    </div>
+
+        <!-- Email Address -->
+        <div class="mt-4">
+            <label class="block font-medium text-sm text-gray-700" for="email">
+    Email
+</label>
+            <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required="required" autocomplete="username">
+                    </div>
+
+        <!-- Password -->
+        <div class="mt-4">
+            <label class="block font-medium text-sm text-gray-700" for="password">
+    Password
+</label>
+
+            <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password" type="password" name="password" required="required" autocomplete="new-password">
+
+                    </div>
+
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <label class="block font-medium text-sm text-gray-700" for="password_confirmation">
+    Confirm Password
+</label>
+
+            <input  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" required="required" autocomplete="new-password">
+
+                    </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="http://127.0.0.1:8000/login">
+                Already registered?
+            </a>
+
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ms-4">
+    Register
+</button>
+        </div>
+    </form>
+            </div>
+        </div>
+    </body>
+</html>
+
