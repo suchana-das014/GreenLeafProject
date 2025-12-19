@@ -2,9 +2,23 @@
     <div class="py-8 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4">
 
-            <h2 class="text-2xl font-bold text-green-700 mb-6">
-                🌿 Indoor Plants
-            </h2>
+            {{-- Success Message --}}
+            @if (session('success'))
+                <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-green-700">
+                    🌿 Indoor Plants
+                </h2>
+
+                <a href="{{ route('cart.index') }}"
+                   class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800">
+                    🛒 View Cart
+                </a>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 

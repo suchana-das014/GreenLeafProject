@@ -4,105 +4,86 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Seller\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
+/*
+|--------------------------------------------------------------------------
+| Seller Routes
+|--------------------------------------------------------------------------
+*/
 Route::middleware(['auth', 'role:seller'])
     ->prefix('seller')
     ->name('seller.')
     ->group(function () {
 
-        Route::get('/products', [ProductController::class, 'index'])
-            ->name('products.index');
+        // Seller dashboard
+        Route::get('/dashboard', function () {
+            return view('seller.dashboard');
+        })->name('dashboard');
 
-        Route::get('/products/create', [ProductController::class, 'create'])
-            ->name('products.create');
-
-        Route::post('/products', [ProductController::class, 'store'])
-            ->name('products.store');
-
-             // ✅ EDIT PRODUCT
-        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
-            ->name('products.edit');
-
-        Route::put('/products/{product}', [ProductController::class, 'update'])
-            ->name('products.update');
-
-            //delete
-            Route::delete('/products/{product}', [ProductController::class, 'destroy'])
-           ->name('products.destroy');
-
-    });
-
+        // Manage products
+        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+        Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Public Routes
 |--------------------------------------------------------------------------
 */
-
-// Home page
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Indoor Plants Page
-Route::get('/plants/indoor', [PlantController::class, 'indoor'])
-    ->name('plants.indoor');
-
-// outdoor plant page
-Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])
-    ->name('plants.outdoor');
+// Plants pages
+Route::get('/plants/indoor', [PlantController::class, 'indoor'])->name('plants.indoor');
+Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])->name('plants.outdoor');
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated Routes
+| Authenticated Buyer Routes
 |--------------------------------------------------------------------------
 */
-
 Route::middleware(['auth'])->group(function () {
 
-    /*
-    |-------------------------
-    | Dashboards
-    |-------------------------
-    */
+    // Dashboards
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['verified'])->name('dashboard');
+    })->name('dashboard');
 
     Route::get('/buyer/dashboard', function () {
         return view('buyer.dashboard');
     })->name('buyer.dashboard');
 
-    Route::get('/seller/dashboard', function () {
-        return view('seller.dashboard');
-    })->name('seller.dashboard');
+    // -------------------------
+    // Wishlist
+    // -------------------------
+    Route::get('/wishlist', [PlantController::class, 'wishlist'])->name('wishlist.index');
+    Route::post('/wishlist/toggle/{plant}', [PlantController::class, 'toggleWishlist'])->name('wishlist.toggle');
 
-    /*
-    |-------------------------
-    | Wishlist / Cart / Buy
-    |-------------------------
-    */
-
-    // ✅ Wishlist Page (WITH CARDS)
-    Route::get('/wishlist', [PlantController::class, 'wishlist'])
-        ->name('wishlist.index');
-
-    // Toggle Wishlist (Add / Remove)
-    Route::post('/wishlist/toggle/{plant}', [PlantController::class, 'toggleWishlist'])
-        ->name('wishlist.toggle');
-
-    // Add to Cart
-    Route::post('/cart/add/{plant}', [PlantController::class, 'addToCart'])
-        ->name('cart.add');
-
+    // -------------------------
     // Buy Now
-    Route::post('/buy-now/{plant}', [PlantController::class, 'buyNow'])
-        ->name('buy.now');
+    // -------------------------
+    Route::post('/buy-now/{product}', [CartController::class, 'buyNow'])->name('buy.now');
 
-    // Checkout (temporary)
-    Route::get('/checkout', function () {
-        return view('buyer.checkout');
-    })->name('checkout');
+    // -------------------------
+    // Cart
+    // -------------------------
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/update/{item}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{item}', [CartController::class, 'remove'])->name('cart.remove');
+
+    // -------------------------
+    // Checkout & Orders
+    // -------------------------
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
 });
 
 /*
@@ -110,6 +91,5 @@ Route::middleware(['auth'])->group(function () {
 | Auth & Profile
 |--------------------------------------------------------------------------
 */
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/profile.php';
