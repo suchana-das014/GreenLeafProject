@@ -4,6 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\Seller\ProductController;
+
+Route::middleware(['auth', 'role:seller'])
+    ->prefix('seller')
+    ->name('seller.')
+    ->group(function () {
+
+        Route::get('/products', [ProductController::class, 'index'])
+            ->name('products.index');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
