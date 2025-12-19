@@ -25,6 +25,11 @@ Route::middleware(['auth', 'role:seller'])
 
         Route::put('/products/{product}', [ProductController::class, 'update'])
             ->name('products.update');
+
+            //delete
+            Route::delete('/products/{product}', [ProductController::class, 'destroy'])
+           ->name('products.destroy');
+
     });
 
 
