@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PlantController extends Controller
@@ -37,25 +37,23 @@ class PlantController extends Controller
         ['name' => 'Lavender', 'price' => 800, 'image' => 'outdoor8.jpg'],
     ];
 }
-
-    /**
-     * Indoor Plants Page
-     */
-    public function indoor()
-    {
-        $plants = $this->allPlants();
-        return view('plants.indoor', compact('plants'));
-    }
-
-    /**
-     * Outdoor Plants Page
-     */
-    public function outdoor()
+public function indoor()
 {
-    $plants = $this->outdoorPlants();
-    return view('plants.outdoor', compact('plants'));
+    $products = Product::where('category', 'indoor')
+        ->where('is_active', true)
+        ->get();
+
+    return view('plants.indoor', compact('products'));
 }
 
+public function outdoor()
+{
+    $products = Product::where('category', 'outdoor')
+        ->where('is_active', true)
+        ->get();
+
+    return view('plants.outdoor', compact('products'));
+}
 
     /**
      * Wishlist Page (cards)
