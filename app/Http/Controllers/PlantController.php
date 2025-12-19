@@ -12,15 +12,15 @@ class PlantController extends Controller
     private function allPlants()
     {
         return [
-            ['name' => 'Snake Plant', 'price' => 1500, 'image' => 'snake_plant.jpg'],
-            ['name' => 'Spider Plant', 'price' => 800, 'image' => 'spider_plant.jpg'],
-            ['name' => 'Peace Lily', 'price' => 1200, 'image' => 'peace_lily.jpg'],
-            ['name' => 'Pothos', 'price' => 900, 'image' => 'pothos.jpg'],
-            ['name' => 'ZZ Plant', 'price' => 1800, 'image' => 'zz_plant.jpg'],
-            ['name' => 'Rubber Plant', 'price' => 2200, 'image' => 'rubber_plant.jpg'],
-            ['name' => 'Monstera', 'price' => 2500, 'image' => 'monstera.jpg'],
-            ['name' => 'Fiddle Leaf Fig', 'price' => 3500, 'image' => 'fiddle_leaf_fig.jpg'],
-            ['name' => 'Boston Fern', 'price' => 1100, 'image' => 'boston_fern.jpg'],
+            ['name' => 'Snake Plant', 'price' => 1500, 'image' => 'indoor1.jpg'],
+            ['name' => 'Spider Plant', 'price' => 800, 'image' => 'indoor2.jpg'],
+            ['name' => 'Peace Lily', 'price' => 1200, 'image' => 'indoor3.jpg'],
+            ['name' => 'Pothos', 'price' => 900, 'image' => 'indoor4.jpg'],
+            ['name' => 'ZZ Plant', 'price' => 1800, 'image' => 'indoor5.jpg'],
+            ['name' => 'Rubber Plant', 'price' => 2200, 'image' => 'indoor6.jpg'],
+            ['name' => 'Monstera', 'price' => 2500, 'image' => 'indoor7.jpg'],
+            ['name' => 'Fiddle Leaf Fig', 'price' => 3500, 'image' => 'indoor8.jpg'],
+            ['name' => 'Boston Fern', 'price' => 1100, 'image' => 'indoor9.jpg'],
         ];
     }
 
