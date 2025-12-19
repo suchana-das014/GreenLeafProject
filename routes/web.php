@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get('/plants/indoor', [PlantController::class, 'indoor'])
     ->name('plants.indoor');
 
+// outdoor plant page
+Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])
+    ->name('plants.outdoor');
+
 /*
 |--------------------------------------------------------------------------
 | Authenticated Routes

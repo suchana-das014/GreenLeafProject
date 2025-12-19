@@ -75,12 +75,13 @@
 </a>
 
                 <!-- Outdoor Plants -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        For garden & balcony
-                    </p>
-                </div>
+               <a href="{{ route('plants.outdoor') }}"
+   class="bg-white rounded-xl p-6 shadow hover:shadow-md transition block">
+    <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
+    <p class="text-sm text-gray-500 mt-2">
+        Perfect for garden & outdoor spaces
+    </p>
+</a>
 
                 <!-- Medicinal Plants -->
                 <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
