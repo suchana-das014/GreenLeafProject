@@ -66,12 +66,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <!-- Indoor Plants -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌱 Indoor Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Perfect for home & office
-                    </p>
-                </div>
+              <a href="{{ route('plants.indoor') }}"
+   class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+    <h4 class="text-lg font-semibold text-green-600">🌿 Indoor Plants</h4>
+    <p class="text-sm text-gray-500 mt-2">
+        Perfect for home & office
+    </p>
+</a>
 
                 <!-- Outdoor Plants -->
                 <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
