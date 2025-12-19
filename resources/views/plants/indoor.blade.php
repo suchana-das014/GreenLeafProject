@@ -11,11 +11,8 @@
 
                     <div class="bg-white rounded-2xl shadow hover:shadow-lg transition">
 
-                        <img
-                            src="{{ asset('images/plants/' . $plant['image']) }}"
-                            alt="{{ $plant['name'] }}"
-                            class="w-full h-48 object-cover rounded-t-2xl"
-                        >
+                        <img src="{{ asset('images/plants/' . $plant['image']) }}" alt="{{ $plant['name'] }}" class="w-full h-48 object-cover rounded-t-2xl">
+
 
                         <div class="p-4">
                             <h3 class="text-lg font-semibold">
