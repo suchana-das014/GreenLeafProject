@@ -7,52 +7,71 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                @foreach ($plants as $plant)
+
+                @forelse ($products as $product)
 
                     <div class="bg-white rounded-2xl shadow hover:shadow-lg transition">
 
-                        <img src="{{ asset('images/plants/' . $plant['image']) }}" alt="{{ $plant['name'] }}" class="w-full h-48 object-cover rounded-t-2xl">
-
+                        {{-- Product Image --}}
+                        <img src="{{ asset('storage/' . $product->image) }}"
+                             alt="{{ $product->name }}"
+                             class="w-full h-48 object-cover rounded-t-2xl">
 
                         <div class="p-4">
                             <h3 class="text-lg font-semibold">
-                                {{ $plant['name'] }}
+                                {{ $product->name }}
                             </h3>
 
                             <p class="text-green-600 font-bold">
-                                ৳ {{ $plant['price'] }}
+                                ৳ {{ number_format($product->price, 2) }}
                             </p>
 
                             <div class="mt-4 space-y-3">
 
-                                <form method="POST" action="{{ route('cart.add', $plant['name']) }}">
+                                {{-- Add to Cart --}}
+                                <form method="POST" action="{{ route('cart.add', $product->id) }}">
                                     @csrf
-                                    <button class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
+                                    <button
+                                        class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
                                         Add to Cart
                                     </button>
                                 </form>
 
                                 <div class="flex gap-3">
-                                    <form method="POST" action="{{ route('buy.now', $plant['name']) }}" class="w-1/2">
+
+                                    {{-- Buy Now --}}
+                                    <form method="POST"
+                                          action="{{ route('buy.now', $product->id) }}"
+                                          class="w-1/2">
                                         @csrf
-                                        <button class="w-full border border-green-600 text-green-600 py-2 rounded-lg">
+                                        <button
+                                            class="w-full border border-green-600 text-green-600 py-2 rounded-lg">
                                             Buy Now
                                         </button>
                                     </form>
 
-                                    <form method="POST" action="{{ route('wishlist.toggle', $plant['name']) }}" class="w-1/2">
+                                    {{-- Wishlist --}}
+                                    <form method="POST"
+                                          action="{{ route('wishlist.toggle', $product->id) }}"
+                                          class="w-1/2">
                                         @csrf
-                                        <button class="w-full border border-gray-300 py-2 rounded-lg">
+                                        <button
+                                            class="w-full border border-gray-300 py-2 rounded-lg">
                                             Wishlist
                                         </button>
                                     </form>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                @endforeach
+                @empty
+                    <p class="text-gray-500 col-span-3 text-center">
+                        No indoor plants available right now.
+                    </p>
+                @endforelse
+
             </div>
 
         </div>
