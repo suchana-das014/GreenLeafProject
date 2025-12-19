@@ -62,6 +62,18 @@ public function update(Request $request, Product $product)
         ->with('success', 'Product updated successfully!');
 }
 
+    public function destroy(Product $product)
+{
+    // Security: only owner can delete
+    if ($product->seller_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $product->delete();
+
+    return redirect()->route('seller.products.index')
+        ->with('success', 'Product deleted successfully!');
+}
 
     public function store(Request $request)
     {

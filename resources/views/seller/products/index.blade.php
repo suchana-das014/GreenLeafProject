@@ -94,11 +94,28 @@
 
                                 <!-- Actions (Placeholder) -->
                                 <td class="px-6 py-4 text-right">
-                                    <a href="{{ route('seller.products.edit', $product->id) }}"
-                                       class="text-blue-600 hover:underline">
-                                        Edit
-                                    </a>
-                                </td>
+    <div class="flex flex-col items-end gap-2">
+        <!-- Edit -->
+        <a href="{{ route('seller.products.edit', $product->id) }}"
+           class="text-blue-600 hover:underline">
+            Edit
+        </a>
+
+        <!-- Delete -->
+        <form action="{{ route('seller.products.destroy', $product->id) }}"
+              method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this product?')">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit"
+                    class="text-red-600 hover:underline">
+                Delete
+            </button>
+        </form>
+    </div>
+</td>
+
                             </tr>
                         @empty
                             <tr>
