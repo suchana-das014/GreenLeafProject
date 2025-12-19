@@ -28,9 +28,11 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+           <main>
+    {{ $slot }}
+</main>
+
+
         </div>
        <!-- 🌿 FOOTER -->
 <footer class="py-16  bg-transparent">

@@ -6,23 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCartsTable extends Migration
 {
-    public function up(): void
+    public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('user_id')
-                  ->nullable()
-                  ->constrained()
-                  ->nullOnDelete();
-
-            $table->string('session_id')->nullable()->index();
-
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('status')->default('active'); // active / ordered
             $table->timestamps();
         });
     }
 
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('carts');
     }
