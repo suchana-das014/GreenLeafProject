@@ -93,8 +93,11 @@
                                 </td>
 
                                 <!-- Actions (Placeholder) -->
-                                <td class="px-6 py-4 text-right text-sm text-gray-500">
-                                    Edit | Delete
+                                <td class="px-6 py-4 text-right">
+                                    <a href="{{ route('seller.products.edit', $product->id) }}"
+                                       class="text-blue-600 hover:underline">
+                                        Edit
+                                    </a>
                                 </td>
                             </tr>
                         @empty
