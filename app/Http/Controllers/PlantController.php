@@ -24,6 +24,20 @@ class PlantController extends Controller
         ];
     }
 
+    private function outdoorPlants()
+{
+    return [
+        ['name' => 'Rose Plant', 'price' => 500, 'image' => 'outdoor1.jpg'],
+        ['name' => 'Bougainvillea', 'price' => 700, 'image' => 'outdoor2.jpg'],
+        ['name' => 'Hibiscus', 'price' => 600, 'image' => 'outdoor3.jpg'],
+        ['name' => 'Jasmine', 'price' => 650, 'image' => 'outdoor4.jpg'],
+        ['name' => 'Tulsi Plant', 'price' => 300, 'image' => 'outdoor5.jpg'],
+        ['name' => 'Sunflower', 'price' => 450, 'image' => 'outdoor6.jpg'],
+        ['name' => 'Marigold', 'price' => 400, 'image' => 'outdoor7.jpg'],
+        ['name' => 'Lavender', 'price' => 800, 'image' => 'outdoor8.jpg'],
+    ];
+}
+
     /**
      * Indoor Plants Page
      */
@@ -32,6 +46,16 @@ class PlantController extends Controller
         $plants = $this->allPlants();
         return view('plants.indoor', compact('plants'));
     }
+
+    /**
+     * Outdoor Plants Page
+     */
+    public function outdoor()
+{
+    $plants = $this->outdoorPlants();
+    return view('plants.outdoor', compact('plants'));
+}
+
 
     /**
      * Wishlist Page (cards)
