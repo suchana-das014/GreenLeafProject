@@ -14,11 +14,13 @@ Instructor: Lukman Nakib
 Institution: Metropolitan University
 
 👩‍💻 Team Members
-Name	Student ID 
+Name:Anika Tahsin 
 
-Anika Tahsin	231-134-004
+Student ID:231-134-004
 
-Suchana Rani Das	232-134-014
+Name:Suchana Rani Das
+
+Student ID:232-134-014
 
 
 🧩 Problem Statement
