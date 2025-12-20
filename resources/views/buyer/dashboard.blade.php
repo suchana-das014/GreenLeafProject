@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout>  
 
     <div class="py-6 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -8,25 +8,19 @@
                 <div class="bg-white p-5 rounded-2xl shadow-sm">
                     <form method="GET" action="#" class="flex flex-col sm:flex-row gap-4">
 
-                        <!-- Search Input -->
                         <div class="flex-1">
                             <input
                                 type="text"
                                 name="search"
                                 placeholder="Search plants, seeds, tools..."
                                 class="w-full px-5 py-3 rounded-xl border border-gray-300
-                                       focus:ring-2 focus:ring-green-400
-                                       focus:border-green-400 transition"
+                                       focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
                             >
                         </div>
 
-                        <!-- Category Dropdown -->
                         <div class="w-full sm:w-56">
-                            <select
-                                class="w-full px-4 py-3 rounded-xl border border-gray-300
-                                       focus:ring-2 focus:ring-green-400
-                                       focus:border-green-400"
-                            >
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300
+                                           focus:ring-2 focus:ring-green-400 focus:border-green-400">
                                 <option value="">All Categories</option>
                                 <option>Indoor Plants</option>
                                 <option>Outdoor Plants</option>
@@ -40,11 +34,10 @@
                             </select>
                         </div>
 
-                        <!-- Search Button -->
                         <button
                             type="submit"
                             class="px-6 py-3 rounded-xl bg-green-600 text-white font-semibold
-                                   hover:bg-green-700 transition"                      >
+                                   hover:bg-green-700 transition">
                             Search
                         </button>
 
@@ -52,7 +45,7 @@
                 </div>
             </div>
 
-            <!-- 👋 Welcome Section -->
+            <!-- 👋 WELCOME -->
             <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
                 <h3 class="text-2xl font-bold text-green-700">
                     Welcome, {{ auth()->user()->name }} 🌿
@@ -62,84 +55,86 @@
                 </p>
             </div>
 
-            <!-- 🧩 Dashboard Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 🧩 DASHBOARD CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <a href="{{ route('plants.indoor') }}" class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+                    <h4 class="text-lg font-semibold text-green-600">🌿 Indoor Plants</h4>
+                    <p class="text-sm text-gray-500 mt-2">Perfect for home & office</p>
+                </a>
 
-                <!-- Indoor Plants -->
-              <a href="{{ route('plants.indoor') }}"
-   class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-    <h4 class="text-lg font-semibold text-green-600">🌿 Indoor Plants</h4>
-    <p class="text-sm text-gray-500 mt-2">
-        Perfect for home & office
-    </p>
-</a>
+                <a href="{{ route('plants.outdoor') }}" class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+                    <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
+                    <p class="text-sm text-gray-500 mt-2">Perfect for garden spaces</p>
+                </a>
 
-                <!-- Outdoor Plants -->
-               <a href="{{ route('plants.outdoor') }}"
-   class="bg-white rounded-xl p-6 shadow hover:shadow-md transition block">
-    <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
-    <p class="text-sm text-gray-500 mt-2">
-        Perfect for garden & outdoor spaces
-    </p>
-</a>
-
-                <!-- Medicinal Plants -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+                <div class="bg-white rounded-xl p-6 shadow">
                     <h4 class="text-lg font-semibold text-green-600">🌼 Medicinal Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Health & wellness plants
-                    </p>
+                    <p class="text-sm text-gray-500 mt-2">Health & wellness plants</p>
                 </div>
+            </div>
 
-                <!-- Flowering Plants -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌸 Flowering Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Colorful & decorative plants
-                    </p>
+            <!-- 🌿 FEATURED PRODUCTS -->
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    Featured Products
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                    @forelse ($products as $product)
+                        <div class="bg-white rounded-2xl shadow p-4">
+
+                            <img
+                                src="{{ asset('storage/' . $product->image) }}"
+                                class="w-full h-48 object-cover rounded-xl"
+                                alt="{{ $product->name }}"
+                            >
+
+                            <h3 class="mt-3 font-semibold text-lg">
+                                {{ $product->name }}
+                            </h3>
+
+                            <p class="text-green-600 font-bold">
+                                ৳{{ number_format($product->price, 2) }}
+                            </p>
+
+                            <!-- ACTION BUTTONS -->
+                            <div class="mt-4 flex gap-2">
+
+                                <!-- ✅ BUY NOW -->
+                                <form action="{{ route('buy.now', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg">
+                                        Buy Now
+                                    </button>
+                                </form>
+
+                                <!-- ADD TO CART -->
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+                                        Add to Cart
+                                    </button>
+                                </form>
+
+                                <!-- ❤️ WISHLIST (FIXED) -->
+                                <form action="{{ route('wishlist.toggle', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button
+                                        class="px-3 py-2 border border-red-400 rounded-lg
+                                               text-red-500 hover:bg-red-100">
+                                        ❤️
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    @empty
+                        <p class="text-gray-500">No products available.</p>
+                    @endforelse
+
                 </div>
-                 <!-- Bonsai Plants -->
-<div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-    <h4 class="text-lg font-semibold text-green-600">🌾 Bonsai Plants</h4>
-    <p class="text-sm text-gray-500 mt-2">
-        Elegant miniature trees for artistic décor
-    </p>
-</div>
-
-<!-- Succulent Plants -->
-<div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-    <h4 class="text-lg font-semibold text-green-600">🌵 Succulent Plants</h4>
-    <p class="text-sm text-gray-500 mt-2">
-        Low-maintenance plants perfect for indoor spaces
-    </p>
-</div>
-
-<!-- Gardening & Growing -->
-<div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-    <h4 class="text-lg font-semibold text-green-600">🌱 Gardening & Growing</h4>
-    <p class="text-sm text-gray-500 mt-2">
-        Tools, seeds, and essentials for healthy plant growth
-    </p>
-</div>
-
-
-                <!-- Seeds -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌾 Seeds</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Grow plants from scratch
-                    </p>
-                </div>
-               
-
-                <!-- Pots & Tools -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🪴 Pots & Tools</h4>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Gardening essentials
-                    </p>
-                </div>
-
             </div>
 
         </div>

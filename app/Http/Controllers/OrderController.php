@@ -31,33 +31,32 @@ class OrderController extends Controller
     |--------------------------------------------------------------------------
     */
     public function confirm(Request $request)
-{
-    $cart = Cart::where('user_id', Auth::id())
-        ->where('status', 'active')
-        ->with('items.product')
-        ->first();
+    {
+        $cart = Cart::where('user_id', Auth::id())
+            ->where('status', 'active')
+            ->with('items.product')
+            ->first();
 
-    if (!$cart || $cart->items->isEmpty()) {
-        return redirect()->route('checkout')
-            ->with('error', 'Your cart is empty.');
+        if (!$cart || $cart->items->isEmpty()) {
+            return redirect()->route('checkout')
+                ->with('error', 'Your cart is empty.');
+        }
+
+        foreach ($cart->items as $item) {
+            Order::create([
+                'user_id'    => Auth::id(),
+                'product_id' => $item->product_id,
+                'quantity'   => $item->quantity,
+                'price'      => $item->price,
+            ]);
+        }
+
+        // Mark cart as ordered
+        $cart->update(['status' => 'ordered']);
+
+        return redirect()->route('buyer.orders')
+            ->with('success', '✅ Order confirmed successfully!');
     }
-
-    foreach ($cart->items as $item) {
-        Order::create([
-            'user_id'    => Auth::id(),
-            'product_id' => $item->product_id,
-            'quantity'   => $item->quantity,
-            'price'      => $item->price,
-        ]);
-    }
-
-    // Mark cart as ordered
-    $cart->update(['status' => 'ordered']);
-
-    return redirect()->route('buyer.orders')
-        ->with('success', '✅ Order confirmed successfully!');
-}
-
 
     /*
     |--------------------------------------------------------------------------
@@ -81,18 +80,18 @@ class OrderController extends Controller
     */
     public function buyNow(Product $product)
     {
-        // Remove existing active cart
+        // Remove any existing active cart
         Cart::where('user_id', Auth::id())
             ->where('status', 'active')
             ->delete();
 
-        // Create new cart
+        // Create a new cart
         $cart = Cart::create([
             'user_id' => Auth::id(),
             'status'  => 'active',
         ]);
 
-        // Add product to cart with price
+        // Add selected product to cart
         $cart->items()->create([
             'product_id' => $product->id,
             'quantity'   => 1,

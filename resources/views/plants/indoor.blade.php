@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout> 
     <div class="py-8 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto px-4">
 
@@ -34,8 +34,8 @@
 
                             <div class="mt-4 space-y-3">
 
-                                {{-- Add to Cart --}}
-                                <form method="POST" action="{{ route('cart.add', $product) }}">
+                                {{-- ✅ Add to Cart --}}
+                                <form method="POST" action="{{ route('cart.add', $product->id) }}">
                                     @csrf
                                     <button class="w-full bg-green-600 text-white py-2 rounded-lg">
                                         Add to Cart
@@ -44,9 +44,9 @@
 
                                 <div class="flex gap-3">
 
-                                    {{-- Buy Now --}}
+                                    {{-- ✅ Buy Now --}}
                                     <form method="POST"
-                                          action="{{ route('buy.now', $product) }}"
+                                          action="{{ route('buy.now', $product->id) }}"
                                           class="w-1/2">
                                         @csrf
                                         <button class="w-full border border-green-600 text-green-600 py-2 rounded-lg">
@@ -54,13 +54,13 @@
                                         </button>
                                     </form>
 
-                                    {{-- Wishlist --}}
+                                    {{-- ✅ Wishlist (TOGGLE FIXED) --}}
                                     <form method="POST"
-                                          action="{{ route('wishlist.toggle', $product) }}"
+                                          action="{{ route('wishlist.toggle', $product->id) }}"
                                           class="w-1/2">
                                         @csrf
                                         <button class="w-full border border-gray-300 py-2 rounded-lg">
-                                            Wishlist
+                                            Wishlist ❤️
                                         </button>
                                     </form>
 
