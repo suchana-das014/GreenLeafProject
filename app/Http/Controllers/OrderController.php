@@ -43,12 +43,14 @@ class OrderController extends Controller
         }
 
         foreach ($cart->items as $item) {
-            Order::create([
-                'user_id'    => Auth::id(),
-                'product_id' => $item->product_id,
-                'quantity'   => $item->quantity,
-                'price'      => $item->price,
-            ]);
+Order::create([
+    'user_id'    => Auth::id(),
+    'product_id' => $item->product_id,
+    'quantity'   => $item->quantity,
+    'price'      => $item->price,
+    'status'     => 'pending',
+]);
+
         }
 
         // Mark cart as ordered
