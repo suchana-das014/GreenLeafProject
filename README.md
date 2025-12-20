@@ -167,7 +167,7 @@ orders
 
 Relationships are handled using Eloquent ORM.
 
-#⚙️ Setup Guide (Quick Start)
+# ⚙️ Setup Guide (Quick Start)
  ## 1. Install dependencies
  
 composer install
