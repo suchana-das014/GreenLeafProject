@@ -1,59 +1,194 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🌿 GreenLeaf – Smart Plant Marketplace & Care Guide System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+GreenLeaf is a full-stack web application developed as part of the Web Programming Practice Lab.
+The system modernizes plant buying and plant care learning by providing a secure, role-based online marketplace for buyers, sellers, and administrators.
 
-## About Laravel
+📌 Project Information
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Project Title: GreenLeaf – Smart Plant Marketplace & Care Guide System
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Course Name: Web Programming Practice Lab
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Instructor: Lukman Nakib
 
-## Learning Laravel
+Institution: Metropolitan University
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+👩‍💻 Team Members
+Name	Student ID 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Anika Tahsin	231-134-004
 
-## Laravel Sponsors
+Suchana Rani Das	232-134-014
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+🧩 Problem Statement
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Plant buyers often struggle to find:
 
-## Contributing
+Reliable sellers
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Accurate plant care instructions
 
-## Code of Conduct
+A trusted and organized marketplace
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+At the same time, small nursery owners lack:
 
-## Security Vulnerabilities
+A digital platform to sell plants
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tools to manage inventory and orders
 
-## License
+Administrators also lack a centralized system to manage users, sellers, and listings.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+💡 Proposed Solution
+
+GreenLeaf solves these problems by offering a centralized web platform with role-based dashboards:
+
+Buyers can browse plants, add to cart, checkout, wishlist items, and access plant care guides.
+
+Sellers can list plants, manage stock, and handle customer orders.
+
+Admins can manage users, approve sellers, and monitor system activity.
+
+🛠️ Technology Stack
+Backend
+
+PHP (Laravel Framework)
+
+Laravel Breeze (Authentication)
+
+SQLite (Database)
+
+MVC Architecture
+
+RESTful Controllers
+
+Role-based Middleware
+
+Frontend
+
+Laravel Blade
+
+Tailwind CSS
+
+Alpine.js
+
+Responsive UI design
+
+Tools
+
+Composer
+
+Node.js & npm
+
+Vite
+
+Git & GitHub
+
+👥 User Roles & Features
+👤 Buyer
+
+Browse plants after login
+
+View plant details & care guide
+
+Add plants to cart
+
+Checkout and place orders
+
+Track order status
+
+Wishlist management
+
+Profile management
+
+🧑‍🌾 Seller
+
+Add new plant listings
+
+Edit or delete plants
+
+Manage plant stock
+
+View orders related to their products
+
+Update order status
+
+Manage shop profile
+
+🛡 Administrator
+
+Manage users and sellers
+
+Approve or reject seller accounts
+
+Monitor platform activity
+
+Control system access
+
+📄 Core Pages Implemented
+
+Home Page (role-based)
+
+Login / Signup
+
+Buyer Dashboard
+
+Seller Dashboard
+
+Admin Dashboard
+
+Profile Management
+
+Settings Page
+
+404 / Error Page
+
+🗄️ Database Overview
+
+Main tables used:
+
+users
+
+products
+
+carts
+
+cart_items
+
+orders
+
+Relationships are handled using Eloquent ORM.
+
+⚙️ Setup Guide (Quick Start)
+# 1. Install dependencies
+composer install
+npm install
+
+# 2. Create environment file
+cp .env.example .env
+php artisan key:generate
+
+# 3. Database (SQLite)
+touch database/database.sqlite
+php artisan migrate
+
+# 4. Storage link
+php artisan storage:link
+
+# 5. Run the project
+npm run dev
+php artisan serve
+
+
+📍 Access the application at:
+http://127.0.0.1:8000
+
+🔐 Authentication & Security
+
+Secure login & registration using Laravel Breeze
+
+Role-based route protection using middleware
+
+Server-side validation and error handling
+
+Protected dashboards for each role
