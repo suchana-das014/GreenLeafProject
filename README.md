@@ -1,9 +1,9 @@
-🌿 GreenLeaf – Smart Plant Marketplace & Care Guide System
+# 🌿 GreenLeaf – Smart Plant Marketplace & Care Guide System
 
 GreenLeaf is a full-stack web application developed as part of the Web Programming Practice Lab.
 The system modernizes plant buying and plant care learning by providing a secure, role-based online marketplace for buyers, sellers, and administrators.
 
-📌 Project Information
+# 📌 Project Information
 
 Project Title: GreenLeaf – Smart Plant Marketplace & Care Guide System
 
@@ -13,17 +13,23 @@ Instructor: Lukman Nakib
 
 Institution: Metropolitan University
 
-👩‍💻 Team Members
+# 👩‍💻 Team Members
 Name:Anika Tahsin 
 
 Student ID:231-134-004
+
+email:anikatahsin4486@gmail.com
 
 Name:Suchana Rani Das
 
 Student ID:232-134-014
 
+email:suchanadas541@gmail.com
 
-🧩 Problem Statement
+
+
+
+# 🧩 Problem Statement
 
 Plant buyers often struggle to find:
 
@@ -41,7 +47,7 @@ Tools to manage inventory and orders
 
 Administrators also lack a centralized system to manage users, sellers, and listings.
 
-💡 Proposed Solution
+# 💡 Proposed Solution
 
 GreenLeaf solves these problems by offering a centralized web platform with role-based dashboards:
 
@@ -51,7 +57,7 @@ Sellers can list plants, manage stock, and handle customer orders.
 
 Admins can manage users, approve sellers, and monitor system activity.
 
-🛠️ Technology Stack
+# 🛠️ Technology Stack
 Backend
 
 PHP (Laravel Framework)
@@ -103,7 +109,7 @@ Wishlist management
 
 Profile management
 
-🧑‍🌾 Seller
+# 🧑‍🌾 Seller
 
 Add new plant listings
 
@@ -117,7 +123,7 @@ Update order status
 
 Manage shop profile
 
-🛡 Administrator
+# 🛡 Administrator
 
 Manage users and sellers
 
@@ -127,7 +133,7 @@ Monitor platform activity
 
 Control system access
 
-📄 Core Pages Implemented
+# 📄 Core Pages Implemented
 
 Home Page (role-based)
 
@@ -145,7 +151,7 @@ Settings Page
 
 404 / Error Page
 
-🗄️ Database Overview
+# 🗄️ Database Overview
 
 Main tables used:
 
@@ -161,31 +167,40 @@ orders
 
 Relationships are handled using Eloquent ORM.
 
-⚙️ Setup Guide (Quick Start)
-# 1. Install dependencies
+#⚙️ Setup Guide (Quick Start)
+ ## 1. Install dependencies
+ 
 composer install
+
 npm install
 
-# 2. Create environment file
+## 2. Create environment file
+
 cp .env.example .env
+
 php artisan key:generate
 
-# 3. Database (SQLite)
+ ## 3. Database (SQLite)
+ 
 touch database/database.sqlite
+
 php artisan migrate
 
-# 4. Storage link
+ ## 4. Storage link
+ 
 php artisan storage:link
 
-# 5. Run the project
+## 5. Run the project
+
 npm run dev
+
 php artisan serve
 
 
-📍 Access the application at:
+#📍 Access the application at:
 http://127.0.0.1:8000
 
-🔐 Authentication & Security
+# 🔐 Authentication & Security
 
 Secure login & registration using Laravel Breeze
 
