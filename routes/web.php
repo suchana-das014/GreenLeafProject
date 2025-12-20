@@ -52,6 +52,13 @@ Route::get('/plants/indoor', [PlantController::class, 'indoor'])
 Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])
     ->name('plants.outdoor');
 
+Route::get('/plants/flowering', [PlantController::class, 'flowering'])->name('plants.flowering');
+Route::get('/plants/medicinal', [PlantController::class, 'medicinal'])->name('plants.medicinal');
+Route::get('/plants/succulent', [PlantController::class, 'succulent'])->name('plants.succulent');
+Route::get('/plants/bonsai', [PlantController::class, 'bonsai'])->name('plants.bonsai');
+Route::get('/plants/gardening', [PlantController::class, 'gardening'])->name('plants.gardening');
+Route::get('/plants/seeds', [PlantController::class, 'seeds'])->name('plants.seeds');
+Route::get('/plants/pots', [PlantController::class, 'pots'])->name('plants.pots');
 /*
 |--------------------------------------------------------------------------
 | AUTHENTICATED BUYER ROUTES

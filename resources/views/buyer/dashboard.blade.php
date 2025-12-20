@@ -73,49 +73,49 @@
     </a>
 
     <!-- Flowering -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'flowering']) }}"
+    <a href="{{ route('plants.flowering') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌸 Flowering Plants</h4>
         <p class="text-sm text-gray-500 mt-2">Beautiful blooming plants</p>
     </a>
 
     <!-- Medicinal -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'medicinal']) }}"
+    <a href="{{ route('plants.medicinal') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌼 Medicinal Plants</h4>
         <p class="text-sm text-gray-500 mt-2">Health & wellness plants</p>
     </a>
 
     <!-- Succulent -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'succulent']) }}"
+    <a href="{{ route('plants.succulent') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌵 Succulent Plants</h4>
         <p class="text-sm text-gray-500 mt-2">Low-maintenance plants</p>
     </a>
 
     <!-- Bonsai -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'bonsai']) }}"
+    <a href="{{ route('plants.bonsai') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌾 Bonsai Plants</h4>
         <p class="text-sm text-gray-500 mt-2">Miniature artistic trees</p>
     </a>
 
     <!-- Gardening -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'gardening']) }}"
+    <a href="{{ route('plants.gardening') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌱 Gardening & Growing</h4>
         <p class="text-sm text-gray-500 mt-2">Soil, tools & accessories</p>
     </a>
 
     <!-- Seeds -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'seeds']) }}"
+    <a href="{{ route('plants.seeds') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🌰 Seeds</h4>
         <p class="text-sm text-gray-500 mt-2">Grow from the start</p>
     </a>
 
     <!-- Pots & Tools -->
-    <a href="{{ route('buyer.dashboard', ['category' => 'tools']) }}"
+    <a href="{{ route('plants.pots') }}"
        class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
         <h4 class="text-lg font-semibold text-green-600">🪴 Pots & Tools</h4>
         <p class="text-sm text-gray-500 mt-2">Essentials for plant care</p>
