@@ -31,31 +31,33 @@ class OrderController extends Controller
     |--------------------------------------------------------------------------
     */
     public function confirm(Request $request)
-    {
-        $cart = Cart::where('user_id', Auth::id())
-            ->where('status', 'active')
-            ->with('items.product')
-            ->first();
+{
+    $cart = Cart::where('user_id', Auth::id())
+        ->where('status', 'active')
+        ->with('items.product')
+        ->first();
 
-        if (!$cart || $cart->items->isEmpty()) {
-            return redirect()->route('cart.index');
-        }
-
-        foreach ($cart->items as $item) {
-            Order::create([
-                'user_id'    => Auth::id(),
-                'product_id' => $item->product_id,
-                'quantity'   => $item->quantity,
-                'price'      => $item->price, // ✅ use cart item price
-            ]);
-        }
-
-        // Mark cart as ordered
-        $cart->update(['status' => 'ordered']);
-
-        return redirect()->route('buyer.orders')
-            ->with('success', 'Order placed successfully!');
+    if (!$cart || $cart->items->isEmpty()) {
+        return redirect()->route('checkout')
+            ->with('error', 'Your cart is empty.');
     }
+
+    foreach ($cart->items as $item) {
+        Order::create([
+            'user_id'    => Auth::id(),
+            'product_id' => $item->product_id,
+            'quantity'   => $item->quantity,
+            'price'      => $item->price,
+        ]);
+    }
+
+    // Mark cart as ordered
+    $cart->update(['status' => 'ordered']);
+
+    return redirect()->route('buyer.orders')
+        ->with('success', '✅ Order confirmed successfully!');
+}
+
 
     /*
     |--------------------------------------------------------------------------
