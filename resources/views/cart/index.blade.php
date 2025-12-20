@@ -58,7 +58,13 @@
             </a>
         </div>
     @else
-        <p class="text-gray-600">Your cart is empty. <a href="{{ route('plants.indoor') }}" class="text-green-600 underline">Shop now</a>.</p>
-    @endif
+    <p class="text-gray-600">
+        Your cart is empty.
+        <a href="{{ route('buyer.dashboard') }}" class="text-green-600 underline font-semibold">
+            Shop now
+        </a>
+    </p>
+@endif
+
 </div>
 </x-app-layout>
