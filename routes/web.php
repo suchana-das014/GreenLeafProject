@@ -7,7 +7,16 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\BuyerDashboardController;
+use App\Http\Controllers\Seller\OrderController as SellerOrderController;
 
+Route::middleware(['auth', 'role:seller'])
+    ->prefix('seller')
+    ->name('seller.')
+    ->group(function () {
+
+        Route::get('/orders', [SellerOrderController::class, 'index'])
+            ->name('orders.index');
+    });
 /*
 |--------------------------------------------------------------------------
 | ROOT DASHBOARD (ROLE BASED)
