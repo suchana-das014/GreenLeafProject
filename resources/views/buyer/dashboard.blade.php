@@ -55,86 +55,76 @@
                 </p>
             </div>
 
-            <!-- 🧩 DASHBOARD CARDS -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <a href="{{ route('plants.indoor') }}" class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌿 Indoor Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">Perfect for home & office</p>
-                </a>
+         <!-- 🧩 DASHBOARD CATEGORY CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 
-                <a href="{{ route('plants.outdoor') }}" class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">Perfect for garden spaces</p>
-                </a>
+    <!-- Indoor -->
+    <a href="{{ route('plants.indoor') }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌿 Indoor Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Perfect for home & office</p>
+    </a>
 
-                <div class="bg-white rounded-xl p-6 shadow">
-                    <h4 class="text-lg font-semibold text-green-600">🌼 Medicinal Plants</h4>
-                    <p class="text-sm text-gray-500 mt-2">Health & wellness plants</p>
-                </div>
-            </div>
+    <!-- Outdoor -->
+    <a href="{{ route('plants.outdoor') }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌳 Outdoor Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Perfect for garden spaces</p>
+    </a>
 
-            <!-- 🌿 FEATURED PRODUCTS -->
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">
-                    Featured Products
-                </h2>
+    <!-- Flowering -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'flowering']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌸 Flowering Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Beautiful blooming plants</p>
+    </a>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Medicinal -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'medicinal']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌼 Medicinal Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Health & wellness plants</p>
+    </a>
 
-                    @forelse ($products as $product)
-                        <div class="bg-white rounded-2xl shadow p-4">
+    <!-- Succulent -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'succulent']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌵 Succulent Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Low-maintenance plants</p>
+    </a>
 
-                            <img
-                                src="{{ asset('storage/' . $product->image) }}"
-                                class="w-full h-48 object-cover rounded-xl"
-                                alt="{{ $product->name }}"
-                            >
+    <!-- Bonsai -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'bonsai']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌾 Bonsai Plants</h4>
+        <p class="text-sm text-gray-500 mt-2">Miniature artistic trees</p>
+    </a>
 
-                            <h3 class="mt-3 font-semibold text-lg">
-                                {{ $product->name }}
-                            </h3>
+    <!-- Gardening -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'gardening']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌱 Gardening & Growing</h4>
+        <p class="text-sm text-gray-500 mt-2">Soil, tools & accessories</p>
+    </a>
 
-                            <p class="text-green-600 font-bold">
-                                ৳{{ number_format($product->price, 2) }}
-                            </p>
+    <!-- Seeds -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'seeds']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🌰 Seeds</h4>
+        <p class="text-sm text-gray-500 mt-2">Grow from the start</p>
+    </a>
 
-                            <!-- ACTION BUTTONS -->
-                            <div class="mt-4 flex gap-2">
+    <!-- Pots & Tools -->
+    <a href="{{ route('buyer.dashboard', ['category' => 'tools']) }}"
+       class="block bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+        <h4 class="text-lg font-semibold text-green-600">🪴 Pots & Tools</h4>
+        <p class="text-sm text-gray-500 mt-2">Essentials for plant care</p>
+    </a>
 
-                                <!-- ✅ BUY NOW -->
-                                <form action="{{ route('buy.now', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg">
-                                        Buy Now
-                                    </button>
-                                </form>
+</div>
 
-                                <!-- ADD TO CART -->
-                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
-                                        Add to Cart
-                                    </button>
-                                </form>
 
-                                <!-- ❤️ WISHLIST (FIXED) -->
-                                <form action="{{ route('wishlist.toggle', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button
-                                        class="px-3 py-2 border border-red-400 rounded-lg
-                                               text-red-500 hover:bg-red-100">
-                                        ❤️
-                                    </button>
-                                </form>
-
-                            </div>
-
-                        </div>
-                    @empty
-                        <p class="text-gray-500">No products available.</p>
-                    @endforelse
-
-                </div>
+        
             </div>
 
         </div>
