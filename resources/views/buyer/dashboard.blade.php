@@ -3,47 +3,7 @@
     <div class="py-6 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- 🔍 SEARCH SECTION -->
-            <div class="mb-8">
-                <div class="bg-white p-5 rounded-2xl shadow-sm">
-                    <form method="GET" action="#" class="flex flex-col sm:flex-row gap-4">
-
-                        <div class="flex-1">
-                            <input
-                                type="text"
-                                name="search"
-                                placeholder="Search plants, seeds, tools..."
-                                class="w-full px-5 py-3 rounded-xl border border-gray-300
-                                       focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
-                            >
-                        </div>
-
-                        <div class="w-full sm:w-56">
-                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300
-                                           focus:ring-2 focus:ring-green-400 focus:border-green-400">
-                                <option value="">All Categories</option>
-                                <option>Indoor Plants</option>
-                                <option>Outdoor Plants</option>
-                                <option>Flowering Plants</option>
-                                <option>Medicinal Plants</option>
-                                <option>Succulent Plants</option>
-                                <option>Bonsai Plants</option>
-                                <option>Gardening & Growing</option>
-                                <option>Seeds</option>
-                                <option>Pots & Tools</option>
-                            </select>
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="px-6 py-3 rounded-xl bg-green-600 text-white font-semibold
-                                   hover:bg-green-700 transition">
-                            Search
-                        </button>
-
-                    </form>
-                </div>
-            </div>
+          
 
             <!-- 👋 WELCOME -->
             <div class="bg-white rounded-2xl shadow-sm p-6 mb-8">
