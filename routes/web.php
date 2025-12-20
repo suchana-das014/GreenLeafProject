@@ -5,10 +5,24 @@ use App\Http\Controllers\PlantController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\BuyerDashboardController;
 
 /*
 |--------------------------------------------------------------------------
-| Seller Routes
+| ROOT DASHBOARD (ROLE BASED)
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard', function () {
+    if (auth()->user()->role === 'seller') {
+        return redirect()->route('seller.dashboard');
+    }
+    return redirect()->route('buyer.dashboard');
+})->middleware('auth')->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| SELLER ROUTES
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth', 'role:seller'])
@@ -20,59 +34,89 @@ Route::middleware(['auth', 'role:seller'])
             return view('seller.dashboard');
         })->name('dashboard');
 
-        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-        Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-        Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-        Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+        Route::resource('products', ProductController::class);
     });
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes
+| PUBLIC ROUTES
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/plants/indoor', [PlantController::class, 'indoor'])->name('plants.indoor');
-Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])->name('plants.outdoor');
+Route::get('/plants/indoor', [PlantController::class, 'indoor'])
+    ->name('plants.indoor');
+
+Route::get('/plants/outdoor', [PlantController::class, 'outdoor'])
+    ->name('plants.outdoor');
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated Buyer Routes
+| AUTHENTICATED BUYER ROUTES
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/buyer/dashboard', function () {
-        return view('buyer.dashboard');
-    })->name('buyer.dashboard');
-
-    // Wishlist
-    Route::get('/wishlist', [PlantController::class, 'wishlist'])->name('wishlist.index');
-    Route::post('/wishlist/toggle/{product}', [PlantController::class, 'toggleWishlist'])->name('wishlist.toggle');
+    // Buyer Dashboard
+    Route::get('/buyer/dashboard', [BuyerDashboardController::class, 'index'])
+        ->name('buyer.dashboard');
 
     // Buy Now
-    Route::post('/buy-now/{product}', [OrderController::class, 'buyNow'])->name('buy.now');
+    Route::post('/buy-now/{product}', [OrderController::class, 'buyNow'])
+        ->name('buy.now');
 
-    // Cart
-    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/update/{item}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/remove/{item}', [CartController::class, 'remove'])->name('cart.remove');
+    /*
+    |--------------------------------------------------------------------------
+    | ✅ WISHLIST (OPTION B – TOGGLE)
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/wishlist', [WishlistController::class, 'index'])
+        ->name('wishlist.index');
 
-    // Checkout & Orders
-    Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
-    Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('buyer.orders');
+    Route::post('/wishlist/toggle/{product}', [WishlistController::class, 'toggle'])
+        ->name('wishlist.toggle');
+
+    Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'destroy'])
+        ->name('wishlist.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | CART
+    |--------------------------------------------------------------------------
+    */
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])
+        ->name('cart.add');
+
+    Route::get('/cart', [CartController::class, 'index'])
+        ->name('cart.index');
+
+    Route::post('/cart/update/{item}', [CartController::class, 'update'])
+        ->name('cart.update');
+
+    Route::delete('/cart/remove/{item}', [CartController::class, 'remove'])
+        ->name('cart.remove');
+
+    /*
+    |--------------------------------------------------------------------------
+    | ORDERS
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/checkout', [OrderController::class, 'checkout'])
+        ->name('checkout');
+
+    Route::post('/order/confirm', [OrderController::class, 'confirm'])
+        ->name('order.confirm');
+
+    Route::get('/my-orders', [OrderController::class, 'myOrders'])
+        ->name('buyer.orders');
 });
 
+/*
+|--------------------------------------------------------------------------
+| AUTH & PROFILE
+|--------------------------------------------------------------------------
+*/
 require __DIR__ . '/auth.php';
 require __DIR__ . '/profile.php';

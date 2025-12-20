@@ -6,50 +6,46 @@
                 🤍 My Wishlist
             </h2>
 
-            @if(count($plants) === 0)
+            @if ($wishlists->isEmpty())
                 <p class="text-gray-500">Your wishlist is empty.</p>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    @foreach ($plants as $plant)
 
+                    @foreach ($wishlists as $wishlist)
                         <div class="bg-white rounded-2xl shadow hover:shadow-lg transition">
 
                             <img
-                                src="{{ asset('images/plants/' . $plant['image']) }}"
-                                alt="{{ $plant['name'] }}"
+                                src="{{ asset('storage/' . $wishlist->product->image) }}"
+                                alt="{{ $wishlist->product->name }}"
                                 class="w-full h-48 object-cover rounded-t-2xl"
                             >
 
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold">
-                                    {{ $plant['name'] }}
+                                    {{ $wishlist->product->name }}
                                 </h3>
 
                                 <p class="text-green-600 font-bold">
-                                    ৳ {{ $plant['price'] }}
+                                    ৳ {{ number_format($wishlist->product->price, 2) }}
                                 </p>
 
-                                <div class="mt-4 space-y-2">
+                                <form
+                                    action="{{ route('wishlist.destroy', $wishlist->id) }}"
+                                    method="POST"
+                                    class="mt-3"
+                                >
+                                    @csrf
+                                    @method('DELETE')
 
-                                    <form method="POST" action="{{ route('cart.add', $plant['name']) }}">
-                                        @csrf
-                                        <button class="w-full bg-green-600 text-white py-2 rounded-lg">
-                                            Add to Cart
-                                        </button>
-                                    </form>
-
-                                    <form method="POST" action="{{ route('wishlist.toggle', $plant['name']) }}">
-                                        @csrf
-                                        <button class="w-full border border-red-400 text-red-500 py-2 rounded-lg">
-                                            Remove from Wishlist
-                                        </button>
-                                    </form>
-
-                                </div>
+                                    <button class="w-full bg-red-100 text-red-600 py-2 rounded-lg hover:bg-red-200">
+                                        ❌ Remove from Wishlist
+                                    </button>
+                                </form>
                             </div>
-                        </div>
 
+                        </div>
                     @endforeach
+
                 </div>
             @endif
 
